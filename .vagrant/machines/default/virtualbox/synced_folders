@@ -1,0 +1,1 @@
+{"virtualbox":{"/var/www/public":{"mount_options":["dmode=777","fmode=666","uid=1000","gid=1000"],"guestpath":"/var/www/public","hostpath":"/Users/smdahlgren171/Code/Semester Three/cset-205/labs/api-lab","disabled":false,"__vagrantfile":true}}}
