@@ -1,0 +1,26 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<script
+src="https://code.jquery.com/jquery-3.3.1.min.js"
+integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+crossorigin="anonymous"></script>
+</head>
+<script src="public/script.js"></script>
+
+<h1><?php echo $title; ?> <a class="btn btn-info" href="http://localhost:3000/slimClient/builds/add">Add build</a></h1>
+<table class='table'>
+  <tr><th>Name</th><th>Cpu</th><th>Gpu</th><th>Actions</th></tr>
+  <?php
+  foreach($responseRecords as $build) {
+    $tableRows = $tableRows . "<tr>";
+      $tableRows = $tableRows . "<td>".$build["name"]."</td><td>".$build["cpu"]."</td><td>".$build["gpu"]."</td>";
+      $tableRows = $tableRows . "<td>
+        <a href='http://localhost:3000/slimClient/builds/".$build["id"]."' class='btn btn-primary'>View Details</a>
+        <a href='http://localhost:3000/slimClient/builds/".$build["id"]."/edit' class='btn btn-secondary'>Edit</a>
+        <a data-id='".$build["id"]."' class='btn btn-danger deletebtn'>Delete</a>
+
+      </td>";
+      $tableRows = $tableRows . "</tr>";
+    };
+    echo $tableRows; ?>
+
+  </table>

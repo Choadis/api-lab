@@ -41,10 +41,10 @@ class App
      $app->get('/builds/{id}', function (Request $request, Response $response, array $args) {
          $id = $args['id'];
 
-         $person = $this->db->query('SELECT * from builds where id='.$id)->fetch();
+         $build = $this->db->query('SELECT * from builds where id='.$id)->fetch();
 
-         if($person){
-           $response =  $response->withJson($person);
+         if($build){
+           $response =  $response->withJson($build);
          } else {
            $errorData = array('status' => 404, 'message' => 'not found');
            $response = $response->withJson($errorData, 404);
@@ -53,15 +53,6 @@ class App
 
      });
      $app->post('/builds', function (Request $request, Response $response) {
-
-
-         // check that peron exists
-         // $person = $this->db->query('SELECT * from builds where id='.$id)->fetch();
-         // if(!$person){
-         //   $errorData = array('status' => 404, 'message' => 'not found');
-         //   $response = $response->withJson($errorData, 404);
-         //   return $response;
-         // }
 
          // build query string
          $createString = "INSERT INTO builds ";
@@ -87,12 +78,12 @@ class App
            $this->db->exec($createString);
          } catch (\PDOException $e) {
            var_dump($e);
-           $errorData = array('status' => 400, 'message' => 'Invalid data provided to create person');
+           $errorData = array('status' => 400, 'message' => 'Invalid data provided to create build');
            return $response->withJson($errorData, 400);
          }
          // return updated record
-         $person = $this->db->query('SELECT * from builds ORDER BY id desc LIMIT 1')->fetch();
-         $jsonResponse = $response->withJson($person);
+         $build = $this->db->query('SELECT * from builds ORDER BY id desc LIMIT 1')->fetch();
+         $jsonResponse = $response->withJson($build);
 
          return $jsonResponse;
      });
@@ -101,8 +92,8 @@ class App
 
 
          // check that build exists
-         $person = $this->db->query('SELECT * from builds where id='.$id)->fetch();
-         if(!$person){
+         $build = $this->db->query('SELECT * from builds where id='.$id)->fetch();
+         if(!$build){
            $errorData = array('status' => 404, 'message' => 'not found');
            $response = $response->withJson($errorData, 404);
            return $response;
@@ -130,11 +121,12 @@ class App
            return $response->withJson($errorData, 400);
          }
          // return updated record
-         $person = $this->db->query('SELECT * from builds where id='.$id)->fetch();
-         $jsonResponse = $response->withJson($person);
+         $build = $this->db->query('SELECT * from builds where id='.$id)->fetch();
+         $jsonResponse = $response->withJson($build);
 
          return $jsonResponse;
      });
+
      $app->delete('/builds/{id}', function (Request $request, Response $response, array $args) {
        $id = $args['id'];
 

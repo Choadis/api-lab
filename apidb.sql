@@ -19,6 +19,7 @@
 -- Table structure for table `builds`
 --
 
+DROP DATABASE apidb;
 CREATE DATABASE apidb;
 USE apidb;
 
