@@ -72,7 +72,7 @@ class App
            "type" => "edit",
            "title" => "Edit build",
            "id" => $id,
-           "build" => $responseRecord
+           "person" => $responseRecord
          ];
          return $this->renderer->render($response, "/buildsEditForm.html", $templateVariables);
 

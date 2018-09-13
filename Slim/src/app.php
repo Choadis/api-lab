@@ -53,6 +53,15 @@ class App
 
      });
      $app->post('/builds', function (Request $request, Response $response) {
+         $this->logger->addInfo("POST /builds/");
+
+         // check that peron exists
+         // $build = $this->db->query('SELECT * from builds where id='.$id)->fetch();
+         // if(!$build){
+         //   $errorData = array('status' => 404, 'message' => 'not found');
+         //   $response = $response->withJson($errorData, 404);
+         //   return $response;
+         // }
 
          // build query string
          $createString = "INSERT INTO builds ";
@@ -89,9 +98,9 @@ class App
      });
      $app->put('/builds/{id}', function (Request $request, Response $response, array $args) {
          $id = $args['id'];
+         $this->logger->addInfo("PUT /builds/".$id);
 
-
-         // check that build exists
+         // check that peron exists
          $build = $this->db->query('SELECT * from builds where id='.$id)->fetch();
          if(!$build){
            $errorData = array('status' => 404, 'message' => 'not found');
