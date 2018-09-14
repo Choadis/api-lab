@@ -42,7 +42,6 @@ class App
 
        $templateVariables = [
            "title" => "Builds",
-           "tableRows" => $tableRows,
            "responseRecords" => $responseRecords
        ];
        return $this->renderer->render($response, "/builds.html", $templateVariables);

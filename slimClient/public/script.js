@@ -16,6 +16,7 @@ $(document).ready(function() {
     // var id = window.location.href.split('/');
     var id = $("#id").attr("value");
     var form = $(this);
+    console.log(form.serialize());
     event.preventDefault();
     $.ajax({
       type: "PUT",

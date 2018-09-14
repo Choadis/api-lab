@@ -10,7 +10,7 @@ class App
 
    private $app;
    public function __construct($db) {
-
+     
      $config['db']['host']   = 'localhost';
      $config['db']['user']   = 'root';
      $config['db']['pass']   = 'root';
@@ -20,12 +20,6 @@ class App
 
      $container = $app->getContainer();
      $container['db'] = $db;
-
-     // $app->add(new basicAuth([
-     //   "users" => [
-     //     'choadis' => "Stan2413"
-     //   ]
-     // ]));
 
      $app->get('/hello/{name}', function (Request $request, Response $response, array $args) {
          $name = $args['name'];
@@ -53,10 +47,9 @@ class App
 
      });
      $app->post('/builds', function (Request $request, Response $response) {
-         $this->logger->addInfo("POST /builds/");
 
-         // check that peron exists
-         // $build = $this->db->query('SELECT * from builds where id='.$id)->fetch();
+         // check that build exists
+         // $build = $this->db->query('SELECT * from builds where name='.$id)->fetch();
          // if(!$build){
          //   $errorData = array('status' => 404, 'message' => 'not found');
          //   $response = $response->withJson($errorData, 404);
@@ -98,9 +91,9 @@ class App
      });
      $app->put('/builds/{id}', function (Request $request, Response $response, array $args) {
          $id = $args['id'];
-         $this->logger->addInfo("PUT /builds/".$id);
+         // $this->logger->addInfo("PUT /builds/".$id);
 
-         // check that peron exists
+         // check that build exists
          $build = $this->db->query('SELECT * from builds where id='.$id)->fetch();
          if(!$build){
            $errorData = array('status' => 404, 'message' => 'not found');
