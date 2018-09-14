@@ -4,7 +4,7 @@ $(document).ready(function() {
     event.preventDefault();
     $.ajax({
       type: "POST",
-      url: "http://localhost:3000/Slim/",
+      url: "http://localhost:3000/Slim/builds",
       data: form.serialize(), // serializes the form's elements.
       success: function(data) {
         window.location.replace("http://localhost:3000/slimClient/builds");
